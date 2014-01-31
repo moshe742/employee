@@ -1,0 +1,53 @@
+<?php
+/**
+* Implements hook_schema().
+*/
+function employee_schema() {
+$schema['employees'] = array(
+			'description' => 'The table for the employee module.',
+			'fields' => array(
+				'id' => array(
+					'description' => 'The primary identifier for employee.',
+					'type' => 'serial',
+					'unsigned' => TRUE,
+					'not null' => TRUE),
+				'user_id' => array(
+					'description' => 'The {users}.uid identifier.',
+					'type' => 'int',
+					'unsigned' => TRUE,
+					'not null' => TRUE,
+					'default' => 0),
+				'email' => array(
+					'description' => 'The user email address.',
+					'type' => 'varchar',
+					'length' => 200),
+				'name' => array(
+					'description' => 'The name of the user.',
+					'type' => 'varchar',
+					'length' => 200),
+				'phone' => array(
+					'description' => 'The phone number of the user.',
+					'type' => 'varchar',
+					'length' => 30),
+				'created' => array(
+					'description' => 'The Unix timestamp when the user entered data for the first time.',
+					'type' => 'int',
+					'not null' => TRUE,
+					'default' => 0),
+				'changed' => array(
+					'description' => 'The Unix timestamp when the user edited his info the last time.',
+					'type' => 'int',
+					'not null' => TRUE,
+					'default' => 0),
+			),
+		'primary key' => array('id'),
+		'foreign keys' => array(
+						'connect_users_employees' => array(
+											'users' => array(
+															'user_id' => 'uid'
+														)
+													)
+								),
+	);
+	return $schema;
+}

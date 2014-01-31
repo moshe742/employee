@@ -1,0 +1,5 @@
+name = Employee
+description = Test module that make a form for employees and list them.
+core = 7.x
+; NEW LINE
+configure = admin/config/content/employee
